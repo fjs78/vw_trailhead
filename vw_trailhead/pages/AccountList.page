@@ -1,0 +1,81 @@
+<apex:page standardController="Account" recordSetVar="accounts">
+ <!-- Add the static resource to page's <head> -->
+    <apex:includeScript value="{! $Resource.jQuery }"/>
+    <apex:form >
+        <apex:outputPanel rendered="false"> <!--hidden-->
+            <apex:repeat value="{!accounts}" var="a">
+                <li><apex:outputLink value="/{!a.Id}">{!a.Name}</apex:outputLink></li>
+            </apex:repeat>
+        </apex:outputPanel>
+    
+        <apex:pageBlock title="Account List" id="accList">
+            Filter: &nbsp;&nbsp;
+            <apex:selectList value="{!filterId}" size="1">
+                <apex:selectOptions value="{!listViewOptions}"/>
+                <apex:actionSupport event="onchange" reRender="accList"/>
+            </apex:selectList>
+            
+            <apex:pageBlockTable value="{!accounts}" var="a">
+                <apex:column value="{!a.Name}"/>
+                <apex:column value="{!a.Phone}"/>
+
+                <apex:column > <apex:outputLink value="/{!a.Id}">Details</apex:outputLink> </apex:column>                            
+            </apex:pageBlockTable>
+        
+         <table style="width: 100%">
+        <tr>
+            <td>
+                <!-- Page X of Y -->
+                Page: <apex:outputText value=" {!PageNumber} of {! CEILING(ResultSize / PageSize) }"/>
+            </td>            
+
+            <td align="center">
+            <!-- Previous page -->
+                <!-- active -->
+                <apex:commandLink action="{! Previous }" value="« Previous"
+                     rendered="{! HasPrevious }"/>
+                <!-- inactive (no earlier pages) -->
+                <apex:outputText style="color: #ccc;" value="« Previous"
+                     rendered="{! NOT(HasPrevious) }"/>
+
+                &nbsp;&nbsp;  
+
+                <!-- Next page -->
+                <!-- active -->
+                <apex:commandLink action="{! Next }" value="Next »"
+                     rendered="{! HasNext }"/>
+                <!-- inactive (no more pages) -->
+                <apex:outputText style="color: #ccc;" value="Next »"
+                     rendered="{! NOT(HasNext) }"/>
+            </td>
+            
+            <td align="right">
+                <!-- Records per page -->
+                Records per page:
+                <apex:selectList value="{! PageSize }" size="1">
+                    <apex:selectOption itemValue="5" itemLabel="5"/>
+                    <apex:selectOption itemValue="20" itemLabel="20"/>
+                    <apex:actionSupport event="onchange" reRender="accList"/>
+                </apex:selectList>
+            </td>
+
+        </tr>
+    </table>
+        <apex:outputPanel >
+            <!-- Where the jQuery message will appear -->
+            <h1 id="jmessage"></h1>
+    </apex:outputPanel>
+ </apex:pageBlock>
+</apex:form>
+      
+    
+    <!-- A short bit of jQuery to test it's there -->
+    <script type="text/javascript">
+        jQuery.noConflict();
+        jQuery(document).ready(function() {
+            jQuery("#jmessage").html("Hello from jQuery!");
+        });
+    </script>
+
+
+</apex:page>

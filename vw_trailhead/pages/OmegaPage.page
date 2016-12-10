@@ -1,0 +1,3 @@
+<apex:page controller="OmegaCon" renderAs="">
+<apex:outputLabel value="Costs &Omega;" escape="false"></apex:outputLabel>
+</apex:page>

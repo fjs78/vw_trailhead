@@ -1,0 +1,40 @@
+<apex:page docType="html-5.0" sidebar="false" standardStylesheets="false">
+    <head>
+        
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>        
+        <title>Bootstrap Page</title>
+        <!-- Bootstrap css-->
+        <apex:styleSheet value="{!URLFOR($Resource.bootstrap336, 'css/bootstrap.min.css')}"/>
+        <!-- Include Jquery js-->       
+        <apex:includeScript value="{!URLFOR($Resource.jquery214, 'jquery-2.1.4.min.js')}"/>
+        <!-- Include Bootstrap js-->
+        <apex:includeScript value="{!URLFOR($Resource.bootstrap336, 'js/bootstrap.min.js')}"/>
+    
+    </head>
+    <body>
+        <div class="container-fluid">
+            <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+            <div class="row">
+              <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+              <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+            </div>
+            
+            <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+            <div class="row">
+              <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+              <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+              <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+            </div>
+            
+            <!-- Columns are always 50% wide, on mobile and desktop -->
+            <div class="row">
+              <div class="col-xs-6">.col-xs-6</div>
+              <div class="col-xs-6">.col-xs-6</div>
+            </div>
+        </div>
+    
+    </body>
+    
+</apex:page>
